@@ -1,0 +1,461 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman Kozuka Gothic Pro
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\topmargin 3pheight%
+\bottommargin 5pheight%
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Numerical Optimization Assignmnet 2
+\end_layout
+
+\begin_layout Author
+103062512 徐丞裕
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\ $
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Decompose 
+\begin_inset Formula $A$
+\end_inset
+
+ using 
+\begin_inset Formula $LDL^{\intercal}$
+\end_inset
+
+ decomposition:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{cll}
+A & = & \left[\begin{array}{ccc}
+1 & 0 & 0\\
+l_{21} & 1 & 0\\
+l_{31} & l_{32} & 1
+\end{array}\right]\left[\begin{array}{ccc}
+d_{1} & 0 & 0\\
+0 & d_{2} & 0\\
+0 & 0 & d_{3}
+\end{array}\right]\left[\begin{array}{ccc}
+1 & l_{21} & l_{31}\\
+0 & 1 & l_{32}\\
+0 & 0 & 1
+\end{array}\right]\\
+\\
+ & = & \left[\begin{array}{cll}
+d_{1} & d_{1}l_{21} & d_{1}l_{31}\\
+d_{1}l_{21} & d_{2}+d_{1}l_{21}^{2} & d_{2}l_{32}+d_{1}l_{21}l_{31}\\
+d_{1}l_{31} & d_{2}l_{32}+d_{1}l_{21}l_{31} & d_{3}+d_{1}l_{31}^{2}+d_{2}l_{32}^{2}
+\end{array}\right]\\
+\\
+ & = & \left[\begin{array}{ccc}
+1 & 0 & 0\\
+2 & 1 & 0\\
+1 & 2 & 1
+\end{array}\right]\left[\begin{array}{ccc}
+1 & 0 & 0\\
+0 & -1 & 0\\
+0 & 0 & -2
+\end{array}\right]\left[\begin{array}{ccc}
+1 & 2 & 1\\
+0 & 1 & 2\\
+0 & 0 & 1
+\end{array}\right]
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Compute the eigenvalues of 
+\begin_inset Formula $A$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{lcl}
+Av & = & \lambda v\\
+(A-\lambda I)v & = & 0
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since the eigenvector 
+\begin_inset Formula $v$
+\end_inset
+
+ is not a zero vector, the system above has non-trivial solutions, which
+ implies 
+\begin_inset Formula $det(A-\lambda I)=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{lcl}
+det(A-\lambda I) & = & 0\\
+\\
+det\left(\left[\begin{array}{lll}
+1-\lambda & 2 & 1\\
+2 & 3-\lambda & 0\\
+1 & 0 & -2-\lambda
+\end{array}\right]\right) & = & 0\\
+\\
+(1-\lambda)(3-\lambda)(-2-\lambda)-4(-2-\lambda)-1(3-\lambda) & = & 0\\
+\\
+\lambda^{3}-2\lambda^{2}-10\lambda+1 & = & 0
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+By solving the equation above, we then have:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{lll}
+\lambda & \approx & 4.2812\\
+\lambda & \approx & 0.0982\\
+\lambda & \approx & -2.3794
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\ $
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\ $
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{lll}
+\left\Vert Qx\right\Vert  & = & \sqrt{(Qx)^{\top}(Qx)}\\
+\\
+ & = & \sqrt{x^{\top}Q^{\top}Qx}\\
+\\
+ & = & \sqrt{x^{\top}x}\\
+\\
+ & = & \left\Vert x\right\Vert 
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Since 
+\begin_inset Formula $A$
+\end_inset
+
+ is symmetric, we have 
+\begin_inset Formula $A=Q\Lambda Q^{\top}$
+\end_inset
+
+ be the eigen decompsition of 
+\begin_inset Formula $A$
+\end_inset
+
+ where 
+\begin_inset Formula $Q$
+\end_inset
+
+ is an othogonal matrix and 
+\begin_inset Formula $\Lambda=diag(\lambda_{1},\ \lambda_{2},\ ...,\ \lambda_{i})$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{lll}
+\left\Vert A\right\Vert  & = & \underset{\left\Vert x\right\Vert =1}{max}\left\Vert Ax\right\Vert \\
+\\
+ & = & \underset{\left\Vert x\right\Vert =1}{max}\sqrt{(Ax)^{\top}(Ax)}\\
+\\
+ & = & \underset{\left\Vert x\right\Vert =1}{max}\sqrt{x^{\top}A^{\top}Ax}\\
+\\
+ & = & \underset{\left\Vert x\right\Vert =1}{max}\sqrt{x^{\top}(Q\Lambda Q^{\top})^{\top}(Q\Lambda Q^{\top})x}\\
+\\
+ & = & \underset{\left\Vert x\right\Vert =1}{max}\sqrt{x^{\top}Q\Lambda^{\top}Q^{\top}Q\Lambda Q^{\top}x}\\
+\\
+ & = & \underset{\left\Vert x\right\Vert =1}{max}\sqrt{x^{\top}Q\Lambda^{2}Q^{\top}x}
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Furthermore, as 
+\begin_inset Formula $Q$
+\end_inset
+
+ is an othogonal matrix (rows and columns are othogonal unit vectors), we
+ can rewrite the equation above as:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{cll}
+\left\Vert A\right\Vert  & = & \underset{\left\Vert x\right\Vert =1}{max}\sqrt{x^{\top}Q\Lambda^{2}Q^{\top}x}\\
+\\
+ & = & \underset{\left\Vert w\right\Vert =1}{max}\sqrt{w^{\top}\Lambda^{2}w}
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $w=Q^{\top}x$
+\end_inset
+
+ is also a unit vector.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\ $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In order to maximize the function above, one should choose 
+\begin_inset Formula $w$
+\end_inset
+
+ with 
+\begin_inset Formula $1$
+\end_inset
+
+ at 
+\begin_inset Formula $k^{th}$
+\end_inset
+
+ element and 
+\begin_inset Formula $0$
+\end_inset
+
+ otherwise, where 
+\begin_inset Formula $\Lambda_{ii}^{2}=\lambda_{max}^{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Thus we have 
+\begin_inset Formula $\left\Vert A\right\Vert =\sqrt{\lambda_{max}^{2}}=\left|\lambda_{max}\right|$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\ $
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Gradient of 
+\begin_inset Formula $f(x,\ y)$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\nabla f(x,\ y)=\left[\begin{array}{l}
+\frac{\partial f}{\partial x}\\
+\\
+\frac{\partial f}{\partial y}
+\end{array}\right]=\left[\begin{array}{l}
+x^{3}-200xy+2x-2\\
+\\
+200(y-x^{2})
+\end{array}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Hessian of 
+\begin_inset Formula $f(x,\ y)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+H=\left[\begin{array}{cc}
+\frac{\partial^{2}f}{\partial x^{2}} & \frac{\partial^{2}f}{\partial x\partial y}\\
+\\
+\frac{\partial^{2}f}{\partial y\partial x} & \frac{\partial^{2}f}{\partial y^{2}}
+\end{array}\right]=\left[\begin{array}{cc}
+3x^{2}-200y+2 & -200\\
+\\
+-400x & 200
+\end{array}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Coding.
+\end_layout
+
+\begin_layout Enumerate
+Coding.
+\end_layout
+
+\end_deeper
+\end_body
+\end_document
