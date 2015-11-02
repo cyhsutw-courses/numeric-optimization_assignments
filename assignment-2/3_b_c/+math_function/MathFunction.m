@@ -1,6 +1,7 @@
 classdef MathFunction < handle
 
   methods (Static)
+  
     function value = valueAt(point)
       % should be overridden
       value = NaN;
