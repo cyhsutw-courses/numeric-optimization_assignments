@@ -409,7 +409,7 @@ Gradient of
 \\
 \frac{\partial f}{\partial y}
 \end{array}\right]=\left[\begin{array}{l}
-x^{3}-200xy+2x-2\\
+400x^{3}-400xy+2x-2\\
 \\
 200(y-x^{2})
 \end{array}\right]
@@ -436,7 +436,7 @@ H=\left[\begin{array}{cc}
 \\
 \frac{\partial^{2}f}{\partial y\partial x} & \frac{\partial^{2}f}{\partial y^{2}}
 \end{array}\right]=\left[\begin{array}{cc}
-3x^{2}-200y+2 & -200\\
+1200x^{2}-400y+2 & -400x\\
 \\
 -400x & 200
 \end{array}\right]
