@@ -1,17 +1,17 @@
 classdef MathFunction < handle
 
   methods (Static)
-    function val = value_at(point)
+    function val = valueAt(point)
       % should be overridden
       val = NaN;
     end
 
-    function gradient = gradient_vector_at(point)
+    function gradient = gradientVectorAt(point)
       % should be overridden
       gradient = NaN;
     end % gradient
 
-    function hessian = hessian_matrix_at(point)
+    function hessian = hessianMatrixAt(point)
       % should be overridden
       hessian = NaN(1);
     end

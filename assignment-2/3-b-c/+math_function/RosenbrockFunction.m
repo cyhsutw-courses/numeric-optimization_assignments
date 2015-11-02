@@ -2,7 +2,7 @@ classdef RosenbrockFunction < math_function.MathFunction
 
   methods (Static)
 
-    function val = value_at(point)
+    function val = valueAt(point)
       % function definition
       % f(x, y) = (1 − x)² + 100(y − x²)²
       x = point(1);
@@ -10,7 +10,7 @@ classdef RosenbrockFunction < math_function.MathFunction
       val = (1 - x)^2 + 100 * (y - x^2)^2;
     end % function val
 
-    function gradient = gradient_vector_at(point)
+    function gradient = gradientVectorAt(point)
       % gradient formula
       % ∇f(x, y) = [
       %   400x³ - 400xy + 2x - 2;
@@ -25,7 +25,7 @@ classdef RosenbrockFunction < math_function.MathFunction
       ]
     end % gradient
 
-    function hessian = hessian_matrix_at(point)
+    function hessian = hessianMatrixAt(point)
       % hessian matrix formula
       % H(x, y) = [
       %   1200x² - 400y + 2, -400x;
