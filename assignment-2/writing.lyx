@@ -154,7 +154,7 @@ d_{1}l_{31} & d_{2}l_{32}+d_{1}l_{21}l_{31} & d_{3}+d_{1}l_{31}^{2}+d_{2}l_{32}^
 \end{array}\right]\left[\begin{array}{ccc}
 1 & 0 & 0\\
 0 & -1 & 0\\
-0 & 0 & -2
+0 & 0 & 1
 \end{array}\right]\left[\begin{array}{ccc}
 1 & 2 & 1\\
 0 & 1 & 2\\
@@ -528,29 +528,10 @@ fitStepLength
 \family default
 : finds and returns a suitable step length using the parameters configured
  at creation.
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset Formula $\begin{array}{c}
-\ \\
-\ 
-\end{array}$
-\end_inset
-
-
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
 \end_inset
 
 
