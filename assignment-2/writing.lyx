@@ -472,13 +472,110 @@ H=\left[\begin{array}{cc}
 
 \end_deeper
 \begin_layout Enumerate
-Coding.
+Instead of implementing a function with other functions as its parameter,
+ I used OOP paradigm and
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+make the Rosenbrock's function a class with the following class methods:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family typewriter
+valueAt
+\family default
+: evaluates and returns the function value given a point.
 \end_layout
 
 \begin_layout Enumerate
-Coding.
+
+\family typewriter
+gradientVectorAt
+\family default
+: evaluates and returns the gradient vector given a point.
 \end_layout
 
+\begin_layout Enumerate
+
+\family typewriter
+hessianMatrixAt
+\family default
+: evaluates and returns the Hessian matrix given a point.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+make the backtracking line search method a class with:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family typewriter
+BacktrackingLineSearcher
+\family default
+: a constructor, creates and returns an instance of the class with configurable
+ parameters.
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+fitStepLength
+\family default
+: finds and returns a suitable step length using the parameters configured
+ at creation.
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $\begin{array}{c}
+\ \\
+\ 
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+The following figure shows the changes of the norms gradient vectors with
+ different algorithms (in 300 iterations even if the alogrithm has reached
+ the convergence criteria).
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename 3_b_c/gradientTrace.eps
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \end_deeper
 \end_body
 \end_document
