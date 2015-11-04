@@ -1,7 +1,7 @@
 classdef ConjugateGradientDescent < handle
 
   properties (Constant)
-    tolerance = 10^-3;
+    tolerance = 10^-4;
   end
 
   methods (Static)
@@ -16,13 +16,15 @@ classdef ConjugateGradientDescent < handle
       residualVector = -gradientVector; % initialize
       searchDirection = residualVector; % initialize
 
+      lineSearcher = algorithm.supplementary.BacktrackingLineSearcher(0.15, 0.8, 1.0);
+
       gradients = []; % initialize
 
       % repeat until converge
       while norm(residualVector) >= algorithm.optimization.ConjugateGradientDescent.tolerance
 
         % determine step length
-        stepLength = algorithm.supplementary.BacktrackingLineSearcher.fitStepLength(point, searchDirection, mathFunction);
+        stepLength = lineSearcher.fitStepLength(point, searchDirection, mathFunction);
 
         % next point
         point = point + searchDirection * stepLength;

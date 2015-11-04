@@ -1,7 +1,7 @@
 classdef NewtonsMethod < handle
 
   properties (Constant)
-    tolerance = 10^-3;
+    tolerance = 10^-4;
   end
 
   methods (Static)
@@ -9,13 +9,16 @@ classdef NewtonsMethod < handle
     function [optimalPoint, gradients] = findOptimalPoint(mathFunction, initialPoint)
       point = initialPoint;
       searchDirection = NaN;
+
+      lineSearcher = algorithm.supplementary.BacktrackingLineSearcher(0.15, 0.8, 1.0);
+
       gradients = []; % initialize
       while true
         gradientVector = mathFunction.gradientVectorAt(point);
         hessianMatrix = mathFunction.hessianMatrixAt(point);
 
         searchDirection = - (hessianMatrix \ gradientVector); % - inv(H) * g
-        stepLength = algorithm.supplementary.BacktrackingLineSearcher.fitStepLength(point, searchDirection, mathFunction);
+        stepLength = lineSearcher.fitStepLength(point, searchDirection, mathFunction);
 
         if norm(stepLength * searchDirection) < algorithm.optimization.NewtonsMethod.tolerance
           % check if converges
