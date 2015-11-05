@@ -1,0 +1,772 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\date{}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-traditional
+\language_package default
+\inputencoding euc-tw
+\fontencoding global
+\font_roman SF UI Text
+\font_sans Source Han Sans TC
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2page%
+\topmargin 1.3pheight%
+\rightmargin 5page%
+\bottommargin 1.3pheight%
+\headheight 0theight%
+\headsep 0cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Cheatsheet
+\shape italic
+!!
+\end_layout
+
+\begin_layout Itemize
+Algorithms:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Steepest descent: 
+\begin_inset Formula $x_{i+1}=x_{i}-\nabla f(x_{i})\cdot\frac{\nabla f(x_{i})^{\top}\nabla f(x_{i})}{\nabla f(x_{i})^{\top}H(x_{i})\nabla f(x_{i})}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Newton's method: 
+\begin_inset Formula $x_{i+1}=x_{i}-H(x_{i})^{-1}\nabla f(x_{i})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Modified Newton: Modify the Hessian matrix such that 
+\begin_inset Formula $\nabla f^{\top}\cdot(-H^{-1}\cdot\nabla f)<0$
+\end_inset
+
+ (descent direction) & make 
+\begin_inset Formula $H$
+\end_inset
+
+ well-conditioned.
+ The original Hessian matrix may have negative eigenvalues, which will result
+ in ascent direction.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula $\ $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+One can perform eigen decomposition and modified the eigenvalues directly,
+ however, computing eigenvalues is costly.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\ $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Another method is called shift modification, 
+\begin_inset Formula $\hat{H}=H+\mu I$
+\end_inset
+
+, this will add 
+\begin_inset Formula $\mu$
+\end_inset
+
+ to each of the eigenvalues, however, it's hard to determine 
+\begin_inset Formula $\mu$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\ $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We then turn to the so called 
+\begin_inset Formula $LDL^{\top}$
+\end_inset
+
+ decomposition, which decompose 
+\begin_inset Formula $H$
+\end_inset
+
+ into 
+\begin_inset Formula $LDL^{\top}$
+\end_inset
+
+, 
+\begin_inset Formula $L$
+\end_inset
+
+ is a lower triangular matrix with 1 as diagonal elements, and 
+\begin_inset Formula $D$
+\end_inset
+
+ is a diagonal matrix.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\ $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We only need to modify the 
+\begin_inset Formula $D$
+\end_inset
+
+ in order to modify the original matrix (
+\begin_inset Formula $L$
+\end_inset
+
+ remains the same), also, calculating the inverse of the 
+\begin_inset Formula $LDL^{\top}$
+\end_inset
+
+ decomposition is quite efficent since calculating the inverse of triangular
+ matrix and diagonal matrix can be very efficient.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Conjugate Gradient Method: reduce the number of steps for each dimension.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Given 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $k=0$
+\end_inset
+
+, 
+\begin_inset Formula $r_{0}=g-H_{0}x_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $d_{0}=r_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Repeat until 
+\begin_inset Formula $\left\Vert r_{k}\right\Vert \leq\epsilon$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\alpha_{k}=\frac{d_{k}^{\top}r_{k}}{d_{k}^{\top}H_{k}d_{k}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $x_{k+1}=x_{k}+\alpha_{k}d_{k}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $r_{k+1}=r_{k}-\alpha_{k}H_{k}d_{k}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\beta_{k}=\frac{r_{k+1}^{\top}r_{k+1}}{r_{k}^{\top}r_{k}}$
+\end_inset
+
+ (Fletcher-Reaves)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $d_{k+1}=r_{k+1}+\beta_{k}d_{k}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k=k+1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Evaluate 
+\begin_inset Formula $H_{k}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+It turns out CG is a fairly good approach to solve a linear system 
+\begin_inset Formula $Ax=b$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Quasi-Newton:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+We can calcutate the vector 
+\begin_inset Formula $H\cdot d=\underset{h\rightarrow0}{lim}\frac{g(x+h\cdot d)-g(x)}{h}=\left[\begin{array}{c}
+\nabla g_{1}\\
+\nabla g_{2}\\
+\vdots\\
+\nabla g_{k}
+\end{array}\right]\cdot d$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+This is the so called Hessian-free calculation.
+\end_layout
+
+\begin_layout Itemize
+However, to use Newton's method, we need to calculate 
+\begin_inset Formula $H^{-1}\cdot d$
+\end_inset
+
+, not 
+\begin_inset Formula $H\cdot d$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+To solve this, use Quasi-Newton's method which assumes that there's no significa
+nt differences between two consecutive Hessian matrices.
+\end_layout
+
+\begin_layout Itemize
+Let 
+\begin_inset Formula $B_{k}$
+\end_inset
+
+ denotes the approximation of 
+\begin_inset Formula $H_{k}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+The secant condition is given by 
+\begin_inset Formula $H(x_{k+1})\cdot(x_{k+1}-x_{k})=g(x_{k+1})-g(x_{k})$
+\end_inset
+
+, which is denoted as 
+\begin_inset Formula $B_{k+1}\cdot d_{k}=y_{k}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+And the Sherman-Morrism-Woodburg formula gives:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+A=B+ab^{\top}\implies A^{-1}=B^{-1}-\frac{B^{-1}ab^{\top}B^{-1}}{1+b^{\top}B^{-1}a}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+With SR1 update, we have:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+B_{k+1}=B_{k}+\frac{(y_{k}-B_{k}d_{k})(y_{k}-B_{k}d_{k})^{\top}}{(y_{k}-B_{k}d_{k})^{\top}d_{k}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(originally, 
+\begin_inset Formula $B_{k+1}=B_{k}+\sigma_{k}u_{k}u_{k}^{\top}$
+\end_inset
+
+ with 
+\begin_inset Formula $u_{k}u_{k}^{\top}$
+\end_inset
+
+ a symmetric rank-one matrix).
+\end_layout
+
+\begin_layout Standard
+Also,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+B_{k+1}^{-1}=B_{k}^{-1}+\frac{(d_{k}-B_{k}^{-1}y_{k})(d_{k}-B_{k}^{-1}y_{k})^{\top}}{(d_{k}-B_{k}^{-1}y_{k})^{\top}y_{k}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+With BFGS update, we have:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+B_{k+1}^{-1}=(I-\rho_{k}d_{k}y_{k}^{\top})B_{k}^{-1}(I-\rho_{k}y_{k}d_{k}^{\top})+\rho_{k}d_{k}d_{k}^{\top}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\rho_{k}=\frac{1}{y_{k}^{\top}d_{k}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Note that BFGS is desinged to satisfy curvature condition: 
+\begin_inset Formula $d_{k}^{\top}y_{k}>0$
+\end_inset
+
+, or in other form: 
+\begin_inset Formula $d_{k}^{\top}B_{k}d_{k}>0$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+BFGS is a 
+\series bold
+rank 2
+\series default
+ update: 
+\begin_inset Formula $B_{k+1}=B_{k}+uu^{\top}+vv^{\top}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Sometime we need to deal with the situations that the denominator is zero,
+ in such case, do not update 
+\begin_inset Formula $B_{i}$
+\end_inset
+
+ (i.e.
+ 
+\begin_inset Formula $B_{i+1}=B_{i}$
+\end_inset
+
+).
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Convergence rate test: 
+\begin_inset Formula $\underset{i\rightarrow\infty}{lim}\frac{\left\Vert x_{i}-x^{*}\right\Vert }{\left\Vert x_{i-1}-x^{*}\right\Vert }=c=\begin{cases}
+\begin{array}{cc}
+0 & superlinear\\
+0.5 & linear\\
+1 & sublinear
+\end{array}\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Quadratic convergence: 
+\begin_inset Formula $\underset{i\rightarrow\infty}{lim}\frac{\left\Vert x_{i}-x^{*}\right\Vert }{\left\Vert x_{i-1}-x^{*}\right\Vert ^{2}}=c,\ c>0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Convergence of CG: For any 
+\begin_inset Formula $x\in R^{n}$
+\end_inset
+
+, if 
+\begin_inset Formula $A$
+\end_inset
+
+ has 
+\begin_inset Formula $m$
+\end_inset
+
+ distinct eigenvalues, CG will terminate at the solution at most 
+\begin_inset Formula $m$
+\end_inset
+
+ iterations.
+ Moreover, if 
+\begin_inset Formula $A$
+\end_inset
+
+ has its eigenvalues 
+\begin_inset Formula $\lambda_{1}\leq\lambda_{2}\le...\leq\lambda_{n}$
+\end_inset
+
+ then 
+\begin_inset Formula $||x_{i+1}-x^{*}||_{A}^{2}\leq(\frac{\lambda_{n-i}-\lambda_{1}}{\lambda_{n-i}+\lambda_{1}})^{2}||x_{i}-x^{*}||_{A}^{2}$
+\end_inset
+
+ (superlinear convergence).
+\end_layout
+
+\begin_layout Itemize
+Condition number 
+\begin_inset Formula $\kappa(A)$
+\end_inset
+
+ of a matrix 
+\begin_inset Formula $A$
+\end_inset
+
+ is defined by 
+\begin_inset Formula $\kappa(A)=\left\Vert A\right\Vert \cdot\left\Vert A^{-1}\right\Vert $
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Consider a linear system 
+\begin_inset Formula $Ax=b$
+\end_inset
+
+, with 
+\begin_inset Formula $x$
+\end_inset
+
+ as its solution.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+An error term 
+\begin_inset Formula $E$
+\end_inset
+
+ is introduced if we use some numeric method to solve the system and results
+ in an approximate solution 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{rcl}
+Ax & = & (A+E)y\\
+ & = & Ay+Ey\\
+\\
+A(x-y) & = & Ey\\
+x-y & = & A^{-1}Ey\\
+\left\Vert x-y\right\Vert  & = & \left\Vert A^{-1}Ey\right\Vert \leq\left\Vert A^{-1}\right\Vert \cdot\left\Vert E\right\Vert \cdot\left\Vert y\right\Vert \\
+\frac{\left\Vert x-y\right\Vert }{\left\Vert y\right\Vert } & \leq & \left\Vert A^{-1}\right\Vert \cdot\left\Vert E\right\Vert =\frac{\left\Vert A^{-1}\right\Vert \cdot\left\Vert E\right\Vert }{\left\Vert A\right\Vert }\cdot\left\Vert A\right\Vert \\
+\frac{\left\Vert x-y\right\Vert }{\left\Vert y\right\Vert } & \leq & (\left\Vert A^{-1}\right\Vert \cdot\left\Vert A\right\Vert )\cdot\frac{\left\Vert E\right\Vert }{\left\Vert A\right\Vert }
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\frac{\left\Vert E\right\Vert }{\left\Vert A\right\Vert }$
+\end_inset
+
+ is the relative error introduced by using numeric methods, and 
+\begin_inset Formula $\left\Vert A^{-1}\right\Vert \cdot\left\Vert A\right\Vert $
+\end_inset
+
+ is the condition number which determines the condition of the linear system
+ (or more specifically, the condition of 
+\begin_inset Formula $A$
+\end_inset
+
+).
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+If 
+\begin_inset Formula $\kappa(A)$
+\end_inset
+
+ is small, the matrix 
+\begin_inset Formula $A$
+\end_inset
+
+ is called well-conditioned (the linear system 
+\begin_inset Formula $Ax=b$
+\end_inset
+
+ can be solved stably).
+\end_layout
+
+\begin_layout Itemize
+If 
+\begin_inset Formula $\kappa(A)$
+\end_inset
+
+ is large, the matrix 
+\begin_inset Formula $A$
+\end_inset
+
+ is called ill-conditioned.
+\end_layout
+
+\begin_layout Itemize
+If 
+\begin_inset Formula $A$
+\end_inset
+
+ is symmetric, 
+\begin_inset Formula $\kappa(A)=\left|\frac{\lambda_{max}}{\lambda_{min}}\right|$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Backtracking line search: attempt to find step length given the function
+ of step length 
+\begin_inset Formula $\phi(\alpha)=f(x_{k}+\alpha p_{k})$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Wolfe conditions:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Sufficeint decrease condition: 
+\begin_inset Formula $\phi(\alpha)\leq\phi(0)+c_{1}\alpha\phi'(0)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Curvature condition: 
+\begin_inset Formula $\phi'(\alpha)\geq c_{2}\phi'(0)$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Goldstien condition:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $f(x_{k})+(1-c)\alpha g_{k}^{\top}d_{k}\leq f(x_{k}+\alpha d_{k})\leq f(x_{k})+c\alpha g_{k}^{\top}d_{k}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Theory: If 
+\begin_inset Formula $d_{i}$
+\end_inset
+
+ is a descent directionm and 
+\begin_inset Formula $\alpha_{i}$
+\end_inset
+
+ satisfies Wolfe conditions, 
+\begin_inset Formula $f$
+\end_inset
+
+ is bounded below (
+\begin_inset Formula $\left|x^{*}\right|$
+\end_inset
+
+ is not equal to 
+\begin_inset Formula $\infty$
+\end_inset
+
+) and is a 
+\begin_inset Formula $C^{1}$
+\end_inset
+
+ function, also 
+\begin_inset Formula $\nabla f$
+\end_inset
+
+ is Lipschitz continuous, then 
+\begin_inset Formula $\underset{i\geq0}{\Sigma}cos^{2}\theta_{i}||\nabla f_{i}||^{2}<\infty$
+\end_inset
+
+ (
+\begin_inset Formula $\theta_{i}$
+\end_inset
+
+ is the angle between 
+\begin_inset Formula $g_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $d_{i}$
+\end_inset
+
+).
+\end_layout
+
+\end_deeper
+\end_body
+\end_document
