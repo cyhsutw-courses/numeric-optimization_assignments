@@ -33,8 +33,7 @@ function [x_star, result, walk_trace] = mysimplex(c, A, b, x0)
       break;
     end
 
-    indexOfFirstNegativeElementInPricingVector = find(pricingVector < 0);
-    indexOfFirstNegativeElementInPricingVector = indexOfFirstNegativeElementInPricingVector(1);
+    [~, indexOfFirstNegativeElementInPricingVector] = min(pricingVector);
 
     selectedIndex = indexesOfNonBasicVars(indexOfFirstNegativeElementInPricingVector);
 
