@@ -108,8 +108,11 @@ We can have
 \[
 A=\left[\begin{array}{ccccccc}
 \frac{1}{2} & cos(x_{0}) & \cdots & cos(mx_{0}) & sin(x_{0}) & \cdots & sin(mx_{0})\\
+\\
 \frac{1}{2} & cos(x_{1}) & \cdots & cos(mx_{1}) & sin(x_{1}) & \cdots & sin(mx_{1})\\
+\\
 \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots\\
+\\
 \frac{1}{2} & cos(x_{n-1}) & \cdots & cos(mx_{n-1}) & sin(x_{n-1}) & \cdots & sin(mx_{n-1})
 \end{array}\right]
 \]
@@ -206,6 +209,7 @@ To continue to proof, we need the following equations (
 \[
 \begin{cases}
 {\displaystyle \sum_{m=1}^{r}} & cos(m\theta)=\frac{1}{2sin\frac{\theta}{2}}\left[sin\frac{2r+1}{2}\theta-sin\frac{\theta}{2}\right]=\frac{1}{sin\frac{\theta}{2}}cos((r+1)\theta)sin(r\theta)\\
+\\
 {\displaystyle \sum_{m=1}^{r}} & sin(m\theta)=\frac{1}{2sin\frac{\theta}{2}}\left[cos\frac{\theta}{2}-cos\frac{2r+1}{2}\theta\right]=\frac{1}{sin\frac{\theta}{2}}sin((r+1)\theta)sin(r\theta)
 \end{cases}
 \]
@@ -236,9 +240,13 @@ Furthermore, since
 \begin_layout Enumerate
 \begin_inset Formula $\begin{array}{ccl}
 {\displaystyle \sum_{k=1}^{n}cos(\alpha x_{k})cos(\beta x_{k})} & = & {\displaystyle \frac{1}{2}\sum_{k=1}^{n}[cos((\alpha+\beta)x_{k})+cos((\alpha-\beta)x_{k})]}\\
+\\
  & = & {\displaystyle \frac{1}{2}\sum_{k=1}^{n}cos((\alpha+\beta)\frac{2\pi k}{n})+\frac{1}{2}\sum_{k=1}^{n}cos((\alpha-\beta)\frac{2\pi k}{n})}\\
+\\
  & = & {\displaystyle {\displaystyle \frac{1}{2sin\frac{(\alpha+\beta)\pi}{n}}cos((n+1)\theta)sin((\alpha+\beta)\pi)+\frac{1}{2}\sum_{k=1}^{n}cos((\alpha-\beta)\frac{2\pi k}{n})}}\\
+\\
  & = & 0+\frac{1}{2sin\frac{(\alpha-\beta)\pi}{n}}cos((n+1)\theta)sin((\alpha-\beta)\pi)\\
+\\
  & = & 0
 \end{array}$
 \end_inset
@@ -249,9 +257,13 @@ Furthermore, since
 \begin_layout Enumerate
 \begin_inset Formula $\begin{array}{ccl}
 {\displaystyle \sum_{k=1}^{n}sin(\alpha x_{k})sin(\beta x_{k})} & = & {\displaystyle \frac{1}{2}\sum_{k=1}^{n}[cos((\alpha+\beta)x_{k})-cos((\alpha-\beta)x_{k})]}\\
+\\
  & = & {\displaystyle \frac{1}{2}\sum_{k=1}^{n}cos((\alpha+\beta)\frac{2\pi k}{n})-\frac{1}{2}\sum_{k=1}^{n}cos((\alpha-\beta)\frac{2\pi k}{n})}\\
+\\
  & = & {\displaystyle {\displaystyle \frac{1}{2sin\frac{(\alpha+\beta)\pi}{n}}cos((n+1)\theta)sin((\alpha+\beta)\pi)-\frac{1}{2}\sum_{k=1}^{n}cos((\alpha-\beta)\frac{2\pi k}{n})}}\\
+\\
  & = & 0-\frac{1}{2sin\frac{(\alpha-\beta)\pi}{n}}cos((n+1)\theta)sin((\alpha-\beta)\pi)\\
+\\
  & = & 0
 \end{array}$
 \end_inset
@@ -262,7 +274,9 @@ Furthermore, since
 \begin_layout Enumerate
 \begin_inset Formula $\begin{array}{ccl}
 {\displaystyle \sum_{k=1}^{n}\frac{1}{2}cos(\alpha x_{k})} & = & {\displaystyle \frac{1}{2}\sum_{k=1}^{n}cos(\frac{2\alpha\pi k}{n})}\\
+\\
  & = & {\displaystyle \frac{1}{2sin\frac{\alpha\pi}{n}}cos((n+1)\theta)sin(\alpha\pi)}\\
+\\
  & = & 0
 \end{array}$
 \end_inset
@@ -273,7 +287,9 @@ Furthermore, since
 \begin_layout Enumerate
 \begin_inset Formula $\begin{array}{ccl}
 {\displaystyle \sum_{k=1}^{n}\frac{1}{2}sin(\alpha x_{k})} & = & {\displaystyle \frac{1}{2}\sum_{k=1}^{n}sin(\frac{2\alpha\pi k}{n})}\\
+\\
  & = & {\displaystyle \frac{1}{2sin\frac{\alpha\pi}{n}}sin((n+1)\theta)sin(\alpha\pi)}\\
+\\
  & = & 0
 \end{array}$
 \end_inset
@@ -284,9 +300,13 @@ Furthermore, since
 \begin_layout Enumerate
 \begin_inset Formula $\begin{array}{ccl}
 {\displaystyle \sum_{k=1}^{n}cos(\alpha x_{k})sin(\beta x_{k})} & = & {\displaystyle \frac{1}{2}\sum_{k=1}^{n}[sin((\alpha+\beta)x_{k})-sin((\alpha-\beta)x_{k})]}\\
+\\
  & = & {\displaystyle \frac{1}{2}\sum_{k=1}^{n}sin((\alpha+\beta)\frac{2\pi k}{n})-\frac{1}{2}\sum_{k=1}^{n}sin((\alpha-\beta)\frac{2\pi k}{n})}\\
+\\
  & = & {\displaystyle {\displaystyle \frac{1}{2sin\frac{(\alpha+\beta)\pi}{n}}sin((n+1)\theta)sin((\alpha+\beta)\pi)-\frac{1}{2}\sum_{k=1}^{n}sin((\alpha-\beta)\frac{2\pi k}{n})}}\\
+\\
  & = & 0-\frac{1}{2sin\frac{(\alpha-\beta)\pi}{n}}sin((n+1)\theta)sin((\alpha-\beta)\pi)\\
+\\
  & = & 0
 \end{array}$
 \end_inset
@@ -300,12 +320,16 @@ Thus each column vector of
 \end_inset
 
  is orthogonal to each other.
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \end_deeper
 \begin_layout Enumerate
 By the normal equation, 
-\begin_inset Formula $x*=(A^{\top}A)^{-1}A^{\top}b$
+\begin_inset Formula $x^{*}=(A^{\top}A)^{-1}A^{\top}b$
 \end_inset
 
 .
@@ -332,21 +356,23 @@ Since each column vector of
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\begin{array}{lll}
-A^{\top}A & = & \left[\begin{array}{lllc}
+A^{\top}A=\left[\begin{array}{lllc}
 \frac{n}{4} & 0 & \cdots & 0\\
-0 & \frac{n}{2} & \cdots & 0\\
-\vdots & \vdots & \ddots & \vdots\\
-0 & 0 & \cdots & \frac{n}{2}
-\end{array}\right]\\
 \\
-(A^{\top}A)^{-1} & = & \left[\begin{array}{lllc}
-\frac{4}{n} & 0 & \cdots & 0\\
-0 & \frac{2}{n} & \cdots & 0\\
+0 & \frac{n}{2} & \cdots & 0\\
+\\
 \vdots & \vdots & \ddots & \vdots\\
+\\
+0 & 0 & \cdots & \frac{n}{2}
+\end{array}\right],\ \ \ \ \ (A^{\top}A)^{-1}=\left[\begin{array}{lllc}
+\frac{4}{n} & 0 & \cdots & 0\\
+\\
+0 & \frac{2}{n} & \cdots & 0\\
+\\
+\vdots & \vdots & \ddots & \vdots\\
+\\
 0 & 0 & \cdots & \frac{2}{n}
 \end{array}\right]
-\end{array}
 \]
 
 \end_inset
@@ -358,46 +384,75 @@ A little bit calculation bring us:
 \begin_inset Formula 
 \[
 \begin{array}{lll}
-x* & = & \left[\begin{array}{lllc}
+x^{*} & = & \left[\begin{array}{lllc}
 \frac{4}{n} & 0 & \cdots & 0\\
+\\
 0 & \frac{2}{n} & \cdots & 0\\
+\\
 \vdots & \vdots & \ddots & \vdots\\
+\\
 0 & 0 & \cdots & \frac{2}{n}
 \end{array}\right]\left[\begin{array}{cccc}
 \frac{1}{2} & \frac{1}{2} & \cdots & \frac{1}{2}\\
+\\
 cos(x_{0}) & cos(x_{1}) & \cdots & cos(x_{n-1})\\
+\\
 \vdots & \vdots & \ddots & \vdots\\
+\\
 cos(mx_{0}) & cos(mx_{1}) & \cdots & cos(mx_{n-1})\\
+\\
 sin(x_{0}) & sin(x_{1}) & \cdots & sin(x_{n-1})\\
+\\
 \vdots & \vdots & \ddots & \vdots\\
+\\
 sin(mx_{0}) & sin(x_{n-1}) & \cdots & sin(mx_{n-1})
 \end{array}\right]\left[\begin{array}{c}
 y_{0}\\
+\\
 y_{1}\\
+\\
 \vdots\\
+\\
 y_{n-1}
 \end{array}\right]\\
+\\
  & = & \left[\begin{array}{cccc}
 \frac{2}{n} & \frac{2}{n} & \cdots & \frac{2}{n}\\
+\\
 \frac{2}{n}cos(x_{0}) & \frac{2}{n}cos(x_{1}) & \cdots & \frac{2}{n}cos(x_{n-1})\\
+\\
 \vdots & \vdots & \ddots & \vdots\\
+\\
 \frac{2}{n}cos(mx_{0}) & \frac{2}{n}cos(mx_{1}) & \cdots & \frac{2}{n}cos(mx_{n-1})\\
+\\
 \frac{2}{n}sin(x_{0}) & \frac{2}{n}sin(x_{1}) & \cdots & \frac{2}{n}sin(mx_{n-1})\\
+\\
 \vdots & \vdots & \ddots & \vdots\\
+\\
 \frac{2}{n}sin(mx_{0}) & \frac{2}{n}sin(mx_{1}) & \cdots & \frac{2}{n}sin(mx_{n-1})
 \end{array}\right]\left[\begin{array}{c}
 y_{0}\\
+\\
 y_{1}\\
+\\
 \vdots\\
+\\
 y_{n-1}
 \end{array}\right]\\
+\\
  & = & \left[\begin{array}{c}
 \frac{2}{n}\sum y_{k}\\
+\\
 \frac{2}{n}\sum y_{k}cos(x_{k})\\
+\\
 \vdots\\
+\\
 \frac{2}{n}\sum y_{k}cos(mx_{k})\\
+\\
 \frac{2}{n}\sum y_{k}sin(x_{k})\\
+\\
 \vdots\\
+\\
 \frac{2}{n}\sum y_{k}sin(mx_{k})
 \end{array}\right]
 \end{array}
@@ -423,10 +478,6 @@ Since
 
  is not sufficiently large, this approximation may not be able to approximate
  the original function well.
-\begin_inset Newpage pagebreak
-\end_inset
-
-
 \end_layout
 
 \end_deeper
