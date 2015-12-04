@@ -423,15 +423,49 @@ Since
 
  is not sufficiently large, this approximation may not be able to approximate
  the original function well.
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-\begin_inset Formula $\ $
+\begin_inset Newpage pagebreak
 \end_inset
 
 
 \end_layout
 
+\end_deeper
+\begin_layout Enumerate
+The source codes are in the 
+\family typewriter
+coding
+\family default
+ folder.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+The optimal solution is at point 
+\begin_inset Formula $(320,\ 360)$
+\end_inset
+
+, and the following plot shows the trace of the simplex method (
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ is the initial point and 
+\begin_inset Formula $t_{3}$
+\end_inset
+
+ is the optimal solution):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 2/trace_cropped.pdf
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \end_body
 \end_document
