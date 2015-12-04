@@ -1,0 +1,471 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-traditional
+\language_package default
+\inputencoding euc-tw
+\fontencoding global
+\font_roman Kozuka Gothic Pro
+\font_sans Source Han Sans TC
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\topmargin 5pheight%
+\bottommargin 5pheight%
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Numeric Optimization Assignment 3
+\end_layout
+
+\begin_layout Author
+103062512 徐丞裕
+\end_layout
+
+\begin_layout Date
+\begin_inset Formula $\text{\ }$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\ $
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+We can have 
+\begin_inset Formula $A$
+\end_inset
+
+ in the following form:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+A=\left[\begin{array}{ccccccc}
+\frac{1}{2} & cos(x_{0}) & \cdots & cos(mx_{0}) & sin(x_{0}) & \cdots & sin(mx_{0})\\
+\frac{1}{2} & cos(x_{1}) & \cdots & cos(mx_{1}) & sin(x_{1}) & \cdots & sin(mx_{1})\\
+\vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots\\
+\frac{1}{2} & cos(x_{n-1}) & \cdots & cos(mx_{n-1}) & sin(x_{n-1}) & \cdots & sin(mx_{n-1})
+\end{array}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+then we can transform the problem 
+\begin_inset Formula $f(x_{k})-y_{k}$
+\end_inset
+
+ to 
+\begin_inset Formula $Ax-b$
+\end_inset
+
+ .
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+To prove that each column vector of A is orthogonal to each other, we need
+ to consider the following cases:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\left[cos(\alpha x_{0}),\ cos(\alpha x_{1}),\ \cdots,\ cos(\alpha x_{n-1})\right]$
+\end_inset
+
+ and 
+\begin_inset Formula $\left[cos(\beta x_{0}),\ cos(\beta x_{1}),\ \cdots,\ cos(\beta x_{n-1})\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\left[sin(\alpha x_{0}),\ sin(\alpha x_{1}),\ \cdots,\ sin(\alpha x_{n-1})\right]$
+\end_inset
+
+ and 
+\begin_inset Formula $\left[sin(\beta x_{0}),\ sin(\beta x_{1}),\ \cdots,\ sin(\beta x_{n-1})\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\left[\frac{1}{2},\ \frac{1}{2},\ \cdots,\ \frac{1}{2}\right]$
+\end_inset
+
+ and 
+\begin_inset Formula $\left[cos(\alpha x_{0}),\ cos(\alpha x_{1}),\ \cdots,\ cos(\alpha x_{n-1})\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\left[\frac{1}{2},\ \frac{1}{2},\ \cdots,\ \frac{1}{2}\right]$
+\end_inset
+
+ and 
+\begin_inset Formula $\left[sin(\alpha x_{0}),\ sin(\alpha x_{1}),\ \cdots,\ sin(\alpha x_{n-1})\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\left[cos(\alpha x_{0}),\ cos(\alpha x_{1}),\ \cdots,\ cos(\alpha x_{n-1})\right]$
+\end_inset
+
+ and 
+\begin_inset Formula $\left[sin(\beta x_{0}),\ sin(\beta x_{1}),\ \cdots,\ sin(\beta x_{n-1})\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+To continue to proof, we need the following equations (
+\begin_inset Formula $r\in N$
+\end_inset
+
+):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{cases}
+{\displaystyle \sum_{m=1}^{r}} & cos(m\theta)=\frac{1}{2sin\frac{\theta}{2}}\left[sin\frac{2r+1}{2}\theta-sin\frac{\theta}{2}\right]=\frac{1}{sin\frac{\theta}{2}}cos((r+1)\theta)sin(r\theta)\\
+{\displaystyle \sum_{m=1}^{r}} & sin(m\theta)=\frac{1}{2sin\frac{\theta}{2}}\left[cos\frac{\theta}{2}-cos\frac{2r+1}{2}\theta\right]=\frac{1}{sin\frac{\theta}{2}}sin((r+1)\theta)sin(r\theta)
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Furthermore, since 
+\begin_inset Formula $x_{0}=x_{k}$
+\end_inset
+
+, we can replace 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ with 
+\begin_inset Formula $x_{k}$
+\end_inset
+
+.
+ Also, by the product-to-sum identities, the inner products of above cases
+ can be reduced to:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\begin{array}{ccl}
+{\displaystyle \sum_{k=1}^{n}cos(\alpha x_{k})cos(\beta x_{k})} & = & {\displaystyle \frac{1}{2}\sum_{k=1}^{n}[cos((\alpha+\beta)x_{k})+cos((\alpha-\beta)x_{k})]}\\
+ & = & {\displaystyle \frac{1}{2}\sum_{k=1}^{n}cos((\alpha+\beta)\frac{2\pi k}{n})+\frac{1}{2}\sum_{k=1}^{n}cos((\alpha-\beta)\frac{2\pi k}{n})}\\
+ & = & {\displaystyle {\displaystyle \frac{1}{2sin\frac{(\alpha+\beta)\pi}{n}}cos((n+1)\theta)sin((\alpha+\beta)\pi)+\frac{1}{2}\sum_{k=1}^{n}cos((\alpha-\beta)\frac{2\pi k}{n})}}\\
+ & = & 0+\frac{1}{2sin\frac{(\alpha-\beta)\pi}{n}}cos((n+1)\theta)sin((\alpha-\beta)\pi)\\
+ & = & 0
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\begin{array}{ccl}
+{\displaystyle \sum_{k=1}^{n}sin(\alpha x_{k})sin(\beta x_{k})} & = & {\displaystyle \frac{1}{2}\sum_{k=1}^{n}[cos((\alpha+\beta)x_{k})-cos((\alpha-\beta)x_{k})]}\\
+ & = & {\displaystyle \frac{1}{2}\sum_{k=1}^{n}cos((\alpha+\beta)\frac{2\pi k}{n})-\frac{1}{2}\sum_{k=1}^{n}cos((\alpha-\beta)\frac{2\pi k}{n})}\\
+ & = & {\displaystyle {\displaystyle \frac{1}{2sin\frac{(\alpha+\beta)\pi}{n}}cos((n+1)\theta)sin((\alpha+\beta)\pi)-\frac{1}{2}\sum_{k=1}^{n}cos((\alpha-\beta)\frac{2\pi k}{n})}}\\
+ & = & 0-\frac{1}{2sin\frac{(\alpha-\beta)\pi}{n}}cos((n+1)\theta)sin((\alpha-\beta)\pi)\\
+ & = & 0
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\begin{array}{ccl}
+{\displaystyle \sum_{k=1}^{n}\frac{1}{2}cos(\alpha x_{k})} & = & {\displaystyle \frac{1}{2}\sum_{k=1}^{n}cos(\frac{2\alpha\pi k}{n})}\\
+ & = & {\displaystyle \frac{1}{2sin\frac{\alpha\pi}{n}}cos((n+1)\theta)sin(\alpha\pi)}\\
+ & = & 0
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\begin{array}{ccl}
+{\displaystyle \sum_{k=1}^{n}\frac{1}{2}sin(\alpha x_{k})} & = & {\displaystyle \frac{1}{2}\sum_{k=1}^{n}sin(\frac{2\alpha\pi k}{n})}\\
+ & = & {\displaystyle \frac{1}{2sin\frac{\alpha\pi}{n}}sin((n+1)\theta)sin(\alpha\pi)}\\
+ & = & 0
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\begin{array}{ccl}
+{\displaystyle \sum_{k=1}^{n}cos(\alpha x_{k})sin(\beta x_{k})} & = & {\displaystyle \frac{1}{2}\sum_{k=1}^{n}[sin((\alpha+\beta)x_{k})-sin((\alpha-\beta)x_{k})]}\\
+ & = & {\displaystyle \frac{1}{2}\sum_{k=1}^{n}sin((\alpha+\beta)\frac{2\pi k}{n})-\frac{1}{2}\sum_{k=1}^{n}sin((\alpha-\beta)\frac{2\pi k}{n})}\\
+ & = & {\displaystyle {\displaystyle \frac{1}{2sin\frac{(\alpha+\beta)\pi}{n}}sin((n+1)\theta)sin((\alpha+\beta)\pi)-\frac{1}{2}\sum_{k=1}^{n}sin((\alpha-\beta)\frac{2\pi k}{n})}}\\
+ & = & 0-\frac{1}{2sin\frac{(\alpha-\beta)\pi}{n}}sin((n+1)\theta)sin((\alpha-\beta)\pi)\\
+ & = & 0
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus each column vector of 
+\begin_inset Formula $A$
+\end_inset
+
+ is orthogonal to each other.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+By the normal equation, 
+\begin_inset Formula $x*=(A^{\top}A)^{-1}A^{\top}b$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Since each column vector of 
+\begin_inset Formula $A$
+\end_inset
+
+ is orthogonal to each other, 
+\begin_inset Formula $A^{\top}A$
+\end_inset
+
+ and 
+\begin_inset Formula $(A^{\top}A)^{-1}$
+\end_inset
+
+ are diagonal matrices as shown below:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{lll}
+A^{\top}A & = & \left[\begin{array}{lllc}
+\frac{n}{4} & 0 & \cdots & 0\\
+0 & \frac{n}{2} & \cdots & 0\\
+\vdots & \vdots & \ddots & \vdots\\
+0 & 0 & \cdots & \frac{n}{2}
+\end{array}\right]\\
+\\
+(A^{\top}A)^{-1} & = & \left[\begin{array}{lllc}
+\frac{4}{n} & 0 & \cdots & 0\\
+0 & \frac{2}{n} & \cdots & 0\\
+\vdots & \vdots & \ddots & \vdots\\
+0 & 0 & \cdots & \frac{2}{n}
+\end{array}\right]
+\end{array}
+\]
+
+\end_inset
+
+A little bit calculation bring us:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{lll}
+x* & = & \left[\begin{array}{lllc}
+\frac{4}{n} & 0 & \cdots & 0\\
+0 & \frac{2}{n} & \cdots & 0\\
+\vdots & \vdots & \ddots & \vdots\\
+0 & 0 & \cdots & \frac{2}{n}
+\end{array}\right]\left[\begin{array}{cccc}
+\frac{1}{2} & \frac{1}{2} & \cdots & \frac{1}{2}\\
+cos(x_{0}) & cos(x_{1}) & \cdots & cos(x_{n-1})\\
+\vdots & \vdots & \ddots & \vdots\\
+cos(mx_{0}) & cos(mx_{1}) & \cdots & cos(mx_{n-1})\\
+sin(x_{0}) & sin(x_{1}) & \cdots & sin(x_{n-1})\\
+\vdots & \vdots & \ddots & \vdots\\
+sin(mx_{0}) & sin(x_{n-1}) & \cdots & sin(mx_{n-1})
+\end{array}\right]\left[\begin{array}{c}
+y_{0}\\
+y_{1}\\
+\vdots\\
+y_{n-1}
+\end{array}\right]\\
+ & = & \left[\begin{array}{cccc}
+\frac{2}{n} & \frac{2}{n} & \cdots & \frac{2}{n}\\
+\frac{2}{n}cos(x_{0}) & \frac{2}{n}cos(x_{1}) & \cdots & \frac{2}{n}cos(x_{n-1})\\
+\vdots & \vdots & \ddots & \vdots\\
+\frac{2}{n}cos(mx_{0}) & \frac{2}{n}cos(mx_{1}) & \cdots & \frac{2}{n}cos(mx_{n-1})\\
+\frac{2}{n}sin(x_{0}) & \frac{2}{n}sin(x_{1}) & \cdots & \frac{2}{n}sin(mx_{n-1})\\
+\vdots & \vdots & \ddots & \vdots\\
+\frac{2}{n}sin(mx_{0}) & \frac{2}{n}sin(mx_{1}) & \cdots & \frac{2}{n}sin(mx_{n-1})
+\end{array}\right]\left[\begin{array}{c}
+y_{0}\\
+y_{1}\\
+\vdots\\
+y_{n-1}
+\end{array}\right]\\
+ & = & \left[\begin{array}{c}
+\frac{2}{n}\sum y_{k}\\
+\frac{2}{n}\sum y_{k}cos(x_{k})\\
+\vdots\\
+\frac{2}{n}\sum y_{k}cos(mx_{k})\\
+\frac{2}{n}\sum y_{k}sin(x_{k})\\
+\vdots\\
+\frac{2}{n}\sum y_{k}sin(mx_{k})
+\end{array}\right]
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Since 
+\begin_inset Formula $A^{\top}A$
+\end_inset
+
+ is a diagonal matrix, the computation cost of calulating the inverse of
+ the matrix will be much lower than the one of polynomial basis.
+ Also, this kind of approximation performs well on periodic functions.
+ However, when 
+\begin_inset Formula $n$
+\end_inset
+
+ is not sufficiently large, this approximation may not be able to approximate
+ the original function well.
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The source codes are in the 
+\family typewriter
+coding
+\family default
+ folder.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+The optimal solution is at point 
+\begin_inset Formula $(320,\ 360)$
+\end_inset
+
+, and the following plot shows the trace of the simplex method (
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ is the initial point and 
+\begin_inset Formula $t_{3}$
+\end_inset
+
+ is the optimal solution):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 2/trace_cropped.pdf
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_body
+\end_document
