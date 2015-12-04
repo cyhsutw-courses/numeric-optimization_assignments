@@ -136,12 +136,27 @@ then we can transform the problem
 
 \end_deeper
 \begin_layout Enumerate
-To prove that each column vector of A is orthogonal to each other, we need
- to consider the following cases:
+To prove that a column vector of 
+\begin_inset Formula $A$
+\end_inset
+
+ is orthogonal any other column vectors of 
+\begin_inset Formula $A$
+\end_inset
+
+, we need to consider the following cases (
+\begin_inset Formula $\alpha,\ \beta\in N$
+\end_inset
+
+):
 \end_layout
 
 \begin_deeper
 \begin_layout Enumerate
+\begin_inset Formula $\alpha\ne\beta$
+\end_inset
+
+: 
 \begin_inset Formula $\left[cos(\alpha x_{0}),\ cos(\alpha x_{1}),\ \cdots,\ cos(\alpha x_{n-1})\right]$
 \end_inset
 
@@ -153,6 +168,10 @@ To prove that each column vector of A is orthogonal to each other, we need
 \end_layout
 
 \begin_layout Enumerate
+\begin_inset Formula $\alpha\ne\beta$
+\end_inset
+
+: 
 \begin_inset Formula $\left[sin(\alpha x_{0}),\ sin(\alpha x_{1}),\ \cdots,\ sin(\alpha x_{n-1})\right]$
 \end_inset
 
@@ -201,6 +220,10 @@ To continue to proof, we need the following equations (
 \begin_inset Formula $r\in N$
 \end_inset
 
+, 
+\begin_inset Formula $q\ne0$
+\end_inset
+
 ):
 \end_layout
 
@@ -208,9 +231,9 @@ To continue to proof, we need the following equations (
 \begin_inset Formula 
 \[
 \begin{cases}
-{\displaystyle \sum_{m=1}^{r}} & cos(m\theta)=\frac{1}{2sin\frac{\theta}{2}}\left[sin\frac{2r+1}{2}\theta-sin\frac{\theta}{2}\right]=\frac{1}{sin\frac{\theta}{2}}cos((r+1)\theta)sin(r\theta)\\
+{\displaystyle \sum_{q=1}^{r}} & cos(q\theta)=\frac{1}{2sin\frac{\theta}{2}}\left[sin\frac{2r+1}{2}\theta-sin\frac{\theta}{2}\right]=\frac{1}{sin\frac{\theta}{2}}cos((r+1)\theta)sin(r\theta)\\
 \\
-{\displaystyle \sum_{m=1}^{r}} & sin(m\theta)=\frac{1}{2sin\frac{\theta}{2}}\left[cos\frac{\theta}{2}-cos\frac{2r+1}{2}\theta\right]=\frac{1}{sin\frac{\theta}{2}}sin((r+1)\theta)sin(r\theta)
+{\displaystyle \sum_{q=1}^{r}} & sin(q\theta)=\frac{1}{2sin\frac{\theta}{2}}\left[cos\frac{\theta}{2}-cos\frac{2r+1}{2}\theta\right]=\frac{1}{sin\frac{\theta}{2}}sin((r+1)\theta)sin(r\theta)
 \end{cases}
 \]
 
@@ -256,13 +279,13 @@ Furthermore, since
 
 \begin_layout Enumerate
 \begin_inset Formula $\begin{array}{ccl}
-{\displaystyle \sum_{k=1}^{n}sin(\alpha x_{k})sin(\beta x_{k})} & = & {\displaystyle \frac{1}{2}\sum_{k=1}^{n}[cos((\alpha+\beta)x_{k})-cos((\alpha-\beta)x_{k})]}\\
+{\displaystyle \sum_{k=1}^{n}sin(\alpha x_{k})sin(\beta x_{k})} & = & {\displaystyle \frac{-1}{2}\sum_{k=1}^{n}[cos((\alpha+\beta)x_{k})-cos((\alpha-\beta)x_{k})]}\\
 \\
- & = & {\displaystyle \frac{1}{2}\sum_{k=1}^{n}cos((\alpha+\beta)\frac{2\pi k}{n})-\frac{1}{2}\sum_{k=1}^{n}cos((\alpha-\beta)\frac{2\pi k}{n})}\\
+ & = & {\displaystyle \frac{-1}{2}\sum_{k=1}^{n}cos((\alpha+\beta)\frac{2\pi k}{n})+\frac{1}{2}\sum_{k=1}^{n}cos((\alpha-\beta)\frac{2\pi k}{n})}\\
 \\
- & = & {\displaystyle {\displaystyle \frac{1}{2sin\frac{(\alpha+\beta)\pi}{n}}cos((n+1)\theta)sin((\alpha+\beta)\pi)-\frac{1}{2}\sum_{k=1}^{n}cos((\alpha-\beta)\frac{2\pi k}{n})}}\\
+ & = & {\displaystyle {\displaystyle \frac{-1}{2sin\frac{(\alpha+\beta)\pi}{n}}cos((n+1)\theta)sin((\alpha+\beta)\pi)+\frac{1}{2}\sum_{k=1}^{n}cos((\alpha-\beta)\frac{2\pi k}{n})}}\\
 \\
- & = & 0-\frac{1}{2sin\frac{(\alpha-\beta)\pi}{n}}cos((n+1)\theta)sin((\alpha-\beta)\pi)\\
+ & = & 0+\frac{1}{2sin\frac{(\alpha-\beta)\pi}{n}}cos((n+1)\theta)sin((\alpha-\beta)\pi)\\
 \\
  & = & 0
 \end{array}$
@@ -305,7 +328,11 @@ Furthermore, since
 \\
  & = & {\displaystyle {\displaystyle \frac{1}{2sin\frac{(\alpha+\beta)\pi}{n}}sin((n+1)\theta)sin((\alpha+\beta)\pi)-\frac{1}{2}\sum_{k=1}^{n}sin((\alpha-\beta)\frac{2\pi k}{n})}}\\
 \\
- & = & 0-\frac{1}{2sin\frac{(\alpha-\beta)\pi}{n}}sin((n+1)\theta)sin((\alpha-\beta)\pi)\\
+ & = & 0-\begin{cases}
+\begin{array}{ccc}
+\frac{1}{2sin\frac{(\alpha-\beta)\pi}{n}}sin((n+1)\theta)sin((\alpha-\beta)\pi) &  & (\alpha\ne\beta)\\
+\frac{1}{2}{\displaystyle \sum_{k=1}^{n}sin(0)} &  & (\alpha=\beta)
+\end{array}\end{cases}\\
 \\
  & = & 0
 \end{array}$
@@ -315,11 +342,6 @@ Furthermore, since
 \end_layout
 
 \begin_layout Standard
-Thus each column vector of 
-\begin_inset Formula $A$
-\end_inset
-
- is orthogonal to each other.
 \begin_inset Newpage pagebreak
 \end_inset
 
